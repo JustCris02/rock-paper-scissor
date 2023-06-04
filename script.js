@@ -1,16 +1,28 @@
 function game(){
     var yourScore=0;
     var npc=0;
-    for(var i =0;i<5,i++;){
+    for(var i =0;i<5;i++){
         var playerSelection = prompt("rock paper or scissor");
+        var computerSelection=getComputerChoice();
+        let result = playRound(playerSelection,computerSelection);
+        if(result=="You Won"){
+            ++yourScore;
+        }else if(result =="You Lost"){
+            ++npc;
+        }else{
+
+        }
+        console.log("Round "+(i+1)+"\nYour Choice = "+playerSelection+"\nNPC Choice = "+computerSelection);
+        console.log("Your Score = "+yourScore);
+        console.log("NPC score = "+npc);
         
     }
     if(yourScore>npc){
-        return "You Won";
+        console.log("You Won");
     }else if(yourScore<npc){
-        return "You Lost";
+        console.log("You Lost");;
     }else{
-        return "Tie";
+        return console.log("Tie");
     }
 
 }
@@ -23,38 +35,13 @@ function getComputerChoice(){
 
 function playRound(playerSelection,computerSelection){
     playerSelection = playerSelection.toLowerCase();
-    if(playerSelection=="rock"){
-        if(computerSelection=="rock"){
-            return "Tie";
-        }
-        else if (computerSelection="paper"){
-            return "You Lost";
-        }else{
-            return "You Won";
-        }
+    if(playerSelection==computerSelection){
+        return "Tie";
+    }else if(playerSelection=="rock"&&computerSelection=="scissor"||playerSelection=="paper"&&computerSelection=="rock"||playerSelection=="scissor"&&computerSelection=="paper"){
+        return "You Won";
+    }else{
+        return "You Lost";
     }
-    if(playerSelection=="paper"){
-        if(computerSelection=="rock"){
-            return "You Won";
-        }
-        else if (computerSelection="paper"){
-            return "Tie";
-        }else{
-            return "You Lost";
-        }
-    }
-    if(playerSelection=="scissor"){
-        if(computerSelection=="rock"){
-            return "You Lost";
-        }
-        else if (computerSelection="paper"){
-            return "You Won";
-        }else{
-            return "Tie";
-        }
-    }
-
-
 }
 
 game();
